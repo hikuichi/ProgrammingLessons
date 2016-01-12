@@ -25,29 +25,21 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            return render_template('index.html', filename=filename, originalname=filename)
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>upload image(only jpg, jpeg, bmp, png, filesize < 1MB)</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+            return render_template('binarize.html', filename=filename, originalname=filename)
+    return render_template('index.html', filename="test", originalname="test")
 
 @app.route('/binarize', methods=['GET', 'POST'])
 def binarize():
-    if request.method == 'POST':
-        thresh = request.form['thresh']
-        filename = request.form['filename']
-        originalname = request.form['originalname']
-        img = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], originalname), 0)
-        ret, threshImg = cv2.threshold(img, float(thresh), 255, cv2.THRESH_BINARY)
-        savename = str(piccount[0])+'.bmp'
-        piccount[0] += 1
-        cv2.imwrite(os.path.join(app.config['UPLOAD_FOLDER'], savename), threshImg)
-        return render_template('index.html', filename=savename , originalname=originalname)
+    #if request.method == 'POST':
+    #    thresh = request.form['thresh']
+    #    filename = request.form['filename']
+    #    originalname = request.form['originalname']
+    #    img = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], originalname), 0)
+    #    ret, threshImg = cv2.threshold(img, float(thresh), 255, cv2.THRESH_BINARY)
+    #    savename = str(piccount[0])+'.bmp'
+    #    piccount[0] += 1
+    #    cv2.imwrite(os.path.join(app.config['UPLOAD_FOLDER'], savename), threshImg)
+    #    return render_template('index.html', filename=savename , originalname=originalname)
     return 'ok'
 
 if __name__ == '__main__':

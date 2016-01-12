@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+  <!-- Form
+  ================================================== -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">
+          {{filename}}
+          {{originalname}}
+        </p>
+        <img src="{{url_for('static', filename=filename)}}"/>
+      </div>
+    </div>
+  </div>
+  <div class="form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/binarize" method="post" class="form-inline">
+          <label for="name" class="sr-only">閾値</label>
+          <input type="text" class="hidden" value="{{originalname}}" name="originalname"/>
+          <input type="text" class="hidden" value="{{filename}}" name="filename"/>
+          <input type="number" class="form-control" id="binarize" name="thresh" placeholder="threshold">
+          <button type="submit" class="btn btn-primary">二値化</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
