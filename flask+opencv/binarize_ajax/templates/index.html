@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="lead">
+          {{filename}}
+          {{originalname}}
+        </p>
+
+        <img alt="" src="" id="img"/>
+      </div>
+    </div>
+  </div>
+  <div class="form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/test" method="post" class="form-inline" name="form_thresh" enctype="multipart/form-data">
+          <label for="name" class="sr-only">閾値</label>
+          <input type="number" class="form-control" id="binarize" name="thresh" placeholder="threshold">
+        </form>
+        <button class="btn btn-primary" id="bin_button">二値化</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}

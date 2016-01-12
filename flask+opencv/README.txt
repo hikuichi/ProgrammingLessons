@@ -1,0 +1,3 @@
+opencvとflaskを組み合わせて遊ぶやつ
+クライアントはguiを提供
+画像処理はflaskからopencvの関数を呼ぶことで実現
