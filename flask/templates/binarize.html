@@ -27,4 +27,18 @@
       </div>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', {{ url_for('binalize') }}, true);
+      xhr.responseType = 'arraybuffer';
+      xhr.onload = function(e) {
+        // ArrayBufferで返ってくる
+        console.log(this.response.byteLength);
+      };
+      xhr.send();
+    })();
+  </script>
+
 {% endblock %}
